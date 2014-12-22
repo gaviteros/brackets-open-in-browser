@@ -4,7 +4,7 @@
 It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl + Shift + Y".
 
 ### Change History
-* 05/18/2012:
+* 12/21/2014:
    * Initial code
 
 #### For support & issues
