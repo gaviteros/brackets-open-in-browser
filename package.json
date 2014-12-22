@@ -1,5 +1,5 @@
 {
-    "name": "openInBrowser",
+    "name": "open-in-browser",
     "title": "Open In Browser",
     "description": "Open the contents of your current view/tab in a web browser.",
     "version": "2.0.0",
