@@ -1,0 +1,8 @@
+{
+    "name": "openInBrowser",
+    "title": "Open In Browser",
+    "description": "Open the contents of your current view/tab in a web browser.",
+    "version": "2.0.0",
+    "homepage": "https://github.com/DH3ALEJANDRO/brackets-open-in-browser",
+    "author": "Avril Alejandro (https://twitter.com/AVRIL_ALEJANDRO)"
+}
