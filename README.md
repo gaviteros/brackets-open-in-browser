@@ -8,7 +8,7 @@ It can be used via the context menu, the File menu or the keyboard shortcut "Ctr
    * added in button toolbar
    * chnaged short cut, of "Ctrl-Shift-Y" to "Ctrl-Shift-Alt-R"
    * fix bugs for file path
-   * add new extensions open files
+   * add new extensions open files = (htm|html|py|php|svg|jpg|jpeg|gif|png|ico|asp)
    * change position menu item, of FileMenu to ViewMenu
 * 12/21/2014:
    * Initial code
