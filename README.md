@@ -4,6 +4,12 @@
 It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl + Shift + Y".
 
 ### Change History
+* 12/22/2014:
+   * added in button toolbar
+   * chnaged short cut, of "Ctrl-Shift-Y" to "Ctrl-Shift-Alt-R"
+   * fix bugs for file path
+   * add new extensions open files
+   * change position menu item, of FileMenu to ViewMenu
 * 12/21/2014:
    * Initial code
 
