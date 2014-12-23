@@ -1,7 +1,7 @@
 [Brackets](https://github.com/adobe/brackets) is an open-source code editor built with the web for the web.
 
 #### Overview
-It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl + Shift + Y".
+It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl-Shift-Alt-R".
 
 ### Change History
 * 12/22/2014:
