@@ -2,13 +2,17 @@
     "name": "open-in-browser",
     "title": "Open In Browser",
     "description": "Open the contents of your current view/tab in a web browser.",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "homepage": "https://github.com/DH3ALEJANDRO/brackets-open-in-browser",
     "author": "Avril Alejandro (https://twitter.com/AVRIL_ALEJANDRO)",
-    "i18n": [ "en", "es"],
+    "i18n": [ "en", "es", "it"],
     "package-i18n": {
         "es": {
             "description": "Abra el contenido de su vista/pestaña actual en su navegador web predeterminado."
+        },
+        "it": {
+            "description": "Aprire il contenuto della vista / scheda corrente nel Browser web predefinito",
+            "title": "Mostra nel Browser"
         }
     }
 }
