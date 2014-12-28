@@ -9,18 +9,34 @@ define(function (require, exports, module) {
         AppInit        = brackets.getModule('utils/AppInit'),
         ExtensionUtils = brackets.getModule("utils/ExtensionUtils"),
         NativeApp      = brackets.getModule('utils/NativeApp'),
+        obtainLanguaje = brackets.getLocale(),
         contextMenu    = Menus.getContextMenu(Menus.ContextMenuIds.EDITOR_MENU),
         menu           = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU),
-        titleRegister  = "Open in Browser",
-        shortCut       = "Ctrl-Shift-Alt-R",
-        COMMAND_ID     = "rfghdfhbdfydfg.open";
+        shortCut       = "Ctrl-Shift-O-P",
+        COMMAND_ID     = "rfghdfhbdfydfg.open",
+        titleRegister,
+        popupTaxt;
+    function returnLanguaje() {
+        if (/it/gi.test(obtainLanguaje)) {
+            popupTaxt = "Questa non è una pagina valida per visualizzazione";
+            titleRegister = "Mostra nel Browser";
+        } else if (/es/gi.test(obtainLanguaje)) {
+            popupTaxt = "Esta no es una página válida para visualizar";
+            titleRegister = "Mostrar en el Navegador";
+        } else {
+            popupTaxt = "is not a valid page to display";
+            titleRegister = "Open in Browser";
+        }
+        return [popupTaxt, titleRegister];
+    }
+    returnLanguaje();
     function startOp() {
         var entry = ProjectManager.getSelectedItem().fullPath;
         var booly = ProjectManager.getSelectedItem()._name;
         if (/\.(htm|html|py|php|svg|jpg|jpeg|gif|png|ico|asp)$/i.test(booly)) {
             NativeApp.openURLInDefaultBrowser('file:///' + entry);
         } else {
-            var text = "is not a valid page to display" + '<br>' + entry;
+            var text = popupTaxt + '<br>' + entry;
             Dialogs.showModalDialog(COMMAND_ID, booly, text);
         }
     }
