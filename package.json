@@ -8,7 +8,8 @@
     "i18n": [ "en", "es", "it"],
     "package-i18n": {
         "es": {
-            "description": "Abra el contenido de su vista/pestaña actual en su navegador web predeterminado."
+            "description": "Abra el contenido de su vista/pestaña actual en su navegador web predeterminado.",
+            "title": "Mostrar en el Navegador"
         },
         "it": {
             "description": "Aprire il contenuto della vista / scheda corrente nel Browser web predefinito",
