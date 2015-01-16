@@ -4,6 +4,10 @@
 It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl-Shift-O-P".
 
 ### Change History
+* 02/16/2015:
+   * added languaje > "fr"
+   * added logo in plugin
+   * changed short cut, of "Ctrl-Shift-O-P" to "Ctrl-Shift-Q"
 * 12/27/2014:
    * added languaje > "es", "it"
    * changed short cut, of "Ctrl-Shift-Alt-R" to "Ctrl-Shift-O-P"
@@ -19,4 +23,6 @@ It can be used via the context menu, the File menu or the keyboard shortcut "Ctr
 #### For support & issues
 Please post your issues, feature changes/requests of this extension using [github](https://github.com/DH3ALEJANDRO/brackets-open-in-browser/issues). I will try to improve this extension.
 
-* thanks to [github.com/Denisov21](https://github.com/Denisov21) by the Italian translation.
+* thanks to [Denisov21](https://github.com/Denisov21) by the Italian translation.
+* thanks to [NicolasKAROLAK](https://github.com/NicolasKAROLAK) by the french translation.
+* thanks to [kasik96](https://github.com/kasik96) by advising one logo.
