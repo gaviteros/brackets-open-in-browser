@@ -12,7 +12,7 @@ define(function (require, exports, module) {
         obtainLanguaje = brackets.getLocale(),
         contextMenu    = Menus.getContextMenu(Menus.ContextMenuIds.EDITOR_MENU),
         menu           = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU),
-        shortCut       = "Ctrl-Shift-O-P",
+        shortCut       = "Ctrl-Shift-Q",
         COMMAND_ID     = "rfghdfhbdfydfg.open",
         titleRegister,
         popupTaxt;
@@ -23,6 +23,9 @@ define(function (require, exports, module) {
         } else if (/es/gi.test(obtainLanguaje)) {
             popupTaxt = "Esta no es una página válida para visualizar";
             titleRegister = "Mostrar en el Navegador";
+        } else if (/fr/gi.test(obtainLanguaje)) {
+            popupTaxt = "Page à afficher invalide";
+            titleRegister = "Ouvrir dans le Navigateur";
         } else {
             popupTaxt = "is not a valid page to display";
             titleRegister = "Open in Browser";
@@ -42,7 +45,7 @@ define(function (require, exports, module) {
     }
     CommandManager.register(titleRegister, COMMAND_ID, startOp);
     contextMenu.addMenuItem(COMMAND_ID, shortCut);
-    menu.addMenuItem(COMMAND_ID, shortCut);
+    menu.addMenuItem(COMMAND_ID);
     function addButton() {
         var $toolbar = $('#main-toolbar .buttons');
         var _button = $('<a/>').attr({
