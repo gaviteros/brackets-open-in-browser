@@ -5,7 +5,7 @@
     "version": "2.4.2",
     "homepage": "https://github.com/DH3ALEJANDRO/brackets-open-in-browser",
     "author": "Avril Alejandro (https://twitter.com/AVRIL_ALEJANDRO)",
-    "i18n": [ "en", "es", "it", "fr"],
+    "i18n": [ "en", "es", "it", "fr", "pt"],
     "package-i18n": {
         "es": {
             "description": "Abra el contenido de su vista/pestaña actual en su navegador web predeterminado.",
@@ -18,6 +18,10 @@
         "fr": {
             "description": "Ouvrir le contenu de la vue actuelle dans le navigateur Web.",
             "title": "Ouvrir dans le Navigateur"
+        },
+        "pt": {
+            "description": "Abre o contéudo atual no navagador web padrão",
+            "title": "Abrir no Navegador"
         }
     }
 }
