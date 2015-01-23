@@ -26,6 +26,9 @@ define(function (require, exports, module) {
         } else if (/fr/gi.test(obtainLanguaje)) {
             popupTaxt = "Page à afficher invalide";
             titleRegister = "Ouvrir dans le Navigateur";
+        } else if (/pt/gi.test(obtainLanguaje)) {
+            popupTaxt = "Não é um arquivo válido para exibir";
+            titleRegister = "Abrir no Navegador";
         } else {
             popupTaxt = "is not a valid page to display";
             titleRegister = "Open in Browser";
