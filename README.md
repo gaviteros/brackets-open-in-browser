@@ -1,9 +1,11 @@
 [Brackets](https://github.com/adobe/brackets) is an open-source code editor built with the web for the web.
 
 #### Overview
-It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl-Shift-O-P".
+It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl-Shift-Q".
 
 ### Change History
+* 02/23/2015
+   * added languaje > "pt"
 * 02/16/2015:
    * added languaje > "fr"
    * added logo in plugin
@@ -23,6 +25,7 @@ It can be used via the context menu, the File menu or the keyboard shortcut "Ctr
 #### For support & issues
 Please post your issues, feature changes/requests of this extension using [github](https://github.com/DH3ALEJANDRO/brackets-open-in-browser/issues). I will try to improve this extension.
 
+* thanks to [carlosgodri](https://github.com/carlosgodri) by the Portuguese translation.
 * thanks to [Denisov21](https://github.com/Denisov21) by the Italian translation.
 * thanks to [NicolasKAROLAK](https://github.com/NicolasKAROLAK) by the french translation.
 * thanks to [kasik96](https://github.com/kasik96) by advising one logo.
