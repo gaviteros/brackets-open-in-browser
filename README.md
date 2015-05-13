@@ -1,9 +1,12 @@
 [Brackets](https://github.com/adobe/brackets) is an open-source code editor built with the web for the web.
 
 #### Overview
-It can be used via the context menu, the File menu or the keyboard shortcut "Ctrl-Shift-Q".
+button in toolbar.
 
 ### Change History
+* 05/13/2015
+   * rewrite extension(new)
+   * filter by file type
 * 02/23/2015
    * added languaje > "pt"
 * 02/16/2015:
