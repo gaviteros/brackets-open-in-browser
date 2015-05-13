@@ -46,8 +46,7 @@ define(function (require, exports, module) {
 
     function startOp() {
         MainViewManager.on("currentFileChange", function () {
-            var entry = ProjectManager.getSelectedItem().fullPath,
-                booly = ProjectManager.getSelectedItem()._name;
+            var booly = ProjectManager.getSelectedItem()._name;
             removeButton("#open-notification");
             if (/\.(htm|html|py|php|svg|jpg|jpeg|gif|png|ico|asp)$/i.test(booly)) {
                 $('<a/>').attr({
@@ -55,7 +54,7 @@ define(function (require, exports, module) {
                     'class': "openInBrowser",
                     'title': titleRegister
                 }).click(function () {
-                    NativeApp.openURLInDefaultBrowser('file:///' + entry);
+                    NativeApp.openURLInDefaultBrowser('file:///' + ProjectManager.getSelectedItem().fullPath);
                 }).appendTo($('#main-toolbar .buttons'));
             } else {
                 removeButton("#open-notification");
@@ -65,6 +64,8 @@ define(function (require, exports, module) {
 
     AppInit.appReady(function () {
         ExtensionUtils.loadStyleSheet(module, "toolbar.css");
-        startOp();
+        try {
+            startOp();
+        } catch (err) {}
     });
 });
