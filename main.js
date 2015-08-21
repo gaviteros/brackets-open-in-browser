@@ -58,15 +58,9 @@ define(function (require, exports, module) {
             open: function (pth, boo) {
                 if (typeof pth === "string") {
                     if (boo) {
-                        NativeApp.openLiveBrowser(pth.toString());
+                        NativeApp.openLiveBrowser('"' + pth.toString() + '"');
                     } else {
-                        /*
-                         *NativeApp.openURLInDefaultBrowser('file:///' + '"' + path + '"');
-                         *
-                         * github/gaviteros
-                         *
-                         */
-                        NativeApp.openURLInDefaultBrowser(pth.toString());
+                        NativeApp.openURLInDefaultBrowser('"' + pth.toString() + '"');
                     }
                 }
             },
