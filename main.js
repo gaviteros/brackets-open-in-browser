@@ -58,7 +58,13 @@ define(function (require, exports, module) {
             open: function (pth, boo) {
                 if (typeof pth === "string") {
                     if (boo) {
-                        NativeApp.openLiveBrowser(pth.toString());
+                        /*
+                        *
+                        * FAIL
+                        * pth.toString()
+                        *
+                        */
+                        NativeApp.openLiveBrowser('"' + pth + '"');
                     } else {
                         /*
                          *NativeApp.openURLInDefaultBrowser('file:///' + '"' + path + '"');
@@ -66,7 +72,7 @@ define(function (require, exports, module) {
                          * github/gaviteros
                          *
                          */
-                        NativeApp.openURLInDefaultBrowser(pth.toString());
+                        NativeApp.openURLInDefaultBrowser('"' + pth + '"');
                     }
                 }
             },
