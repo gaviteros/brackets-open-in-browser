@@ -4,6 +4,8 @@
 button in toolbar.
 
 ### Change History
+* 08/20/2015
+   * fix bug > blank page, brackets crashing (tnk! [gaviteros](https://github.com/gaviteros))
 * 05/23/2015
    * added Croatian translation > "hr"
    * minifier code (simple)
