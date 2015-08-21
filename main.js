@@ -1,56 +1,83 @@
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global define, $, brackets */
-/*jslint vars: true */
-/*global define, brackets, $, window*/
+/*jslint vars: true */ /*global define, brackets, $, window, Mustache, console*/
+
+/*
+ *
+ *
+ *    AVRIL ALEJANDRO COMMONS PE.
+ *
+ *
+ */
 define(function (require, exports, module) {
     "use strict";
     var MainViewManager = brackets.getModule("view/MainViewManager"),
         NativeApp = brackets.getModule('utils/NativeApp'),
         ExtensionUtils = brackets.getModule("utils/ExtensionUtils"),
+        CommandManager = brackets.getModule('command/CommandManager'),
+        AppInit = brackets.getModule('utils/AppInit'),
         PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
+        KeyBindingManager = brackets.getModule('command/KeyBindingManager'),
         prefs = PreferencesManager.getExtensionPrefs("open.in.browser"),
         Dialogs = brackets.getModule("widgets/Dialogs"),
+        panelDialog = require('text!dialog.html'),
         getLocale = brackets.getLocale(),
-        objectK = "extensionFile",
+        objectK = "extensionFileDefault",
+        objectCHR = "extensionFileChrome",
+        keyid = objectK + "_keyBindingOpenInBrowser",
+        extensions = ["jpg", "jpeg", "gif", "png", "ico"],
+        chrome = ["html", "htm"],
+        shortIn = [{
+            "key": "Alt-Shift-O",
+            "platform": "win",
+            "platform-exception": "mac"
+        }, {
+            "key": "Alt-Shift-O",
+            "platform": "mac"
+        }, {
+            "key": "Alt-Shift-O",
+            "platform": "linux"
+        }],
+        short = "Alt-Shift-O",
         o = {
             language: function (l) {
-                var popupTaxt,
-                    titleRegister,
-                    nothing;
+                var titleRegister;
                 if (/it/gi.test(l)) {
-                    popupTaxt = "Questa non è una pagina valida per visualizzazione";
                     titleRegister = "Mostra nel Browser";
-                    nothing = "nulla qui intorno";
                 } else if (/es/gi.test(l)) {
-                    popupTaxt = "Esta no es una página válida para visualizar";
                     titleRegister = "Mostrar en el Navegador";
-                    nothing = "nada por aqui";
                 } else if (/fr/gi.test(l)) {
-                    popupTaxt = "Page à afficher invalide";
                     titleRegister = "Ouvrir dans le Navigateur";
-                    nothing = "rien ici";
                 } else if (/pt/gi.test(l)) {
-                    popupTaxt = "Não é um arquivo válido para exibir";
                     titleRegister = "Abrir no Navegador";
-                    nothing = "nada por aqui";
+                } else if (/hr/gi.test(l)) {
+                    titleRegister = "Otvori u web pregledniku";
                 } else {
-                    popupTaxt = "is not a valid page to display";
                     titleRegister = "Open in Browser";
-                    nothing = "nothing around here";
                 }
-                return {
-                    popupTaxt: popupTaxt,
-                    titleRegister: titleRegister,
-                    nothing: nothing
-                };
+                return titleRegister;
             },
-            button: function (path, lng) {
+            open: function (pth, boo) {
+                if (typeof pth === "string") {
+                    if (boo) {
+                        NativeApp.openLiveBrowser(pth.toString());
+                    } else {
+                        /*
+                         *NativeApp.openURLInDefaultBrowser('file:///' + '"' + path + '"');
+                         *
+                         * github/gaviteros
+                         *
+                         */
+                        NativeApp.openURLInDefaultBrowser(pth.toString());
+                    }
+                }
+            },
+            button: function (path, lng, boo) {
+                var self = this;
                 $('<a/>').attr({
                     'id': "openFileBrackets_OIB",
                     'class': "openInBrowser_OIB",
                     'title': lng
                 }).click(function () {
-                    NativeApp.openURLInDefaultBrowser('file:///' + path);
+                    self.open(path, boo);
                 }).appendTo($('#main-toolbar .buttons'));
             },
             removeButton: function (el) {
@@ -67,25 +94,29 @@ define(function (require, exports, module) {
                     return Array.isArray(arr);
                 }
             },
-            setPrefs: function (b) {
-                prefs.set(objectK, b);
+            hasDATA: function (oja, fli) {
+                var rx = $.inArray(fli, oja),
+                    rtrn = (rx > -1) ? true : false;
+                return rtrn;
+            },
+            setPrefs: function (idk, b) {
+                prefs.set(idk, b);
                 prefs.save();
             },
-            getPrefs: function () {
-                return prefs.get(objectK);
+            getPrefs: function (idk) {
+                return prefs.get(idk);
             },
-            savePrefs: function () {
-                var extensions = ["htm", "html", "jpg", "jpeg", "gif", "png", "ico"];
-                if (!this.isArray(this.getPrefs())) {
-                    o.setPrefs(extensions);
+            savePrefs: function (idk, objx) {
+                if (!this.isArray(this.getPrefs(idk))) {
+                    o.setPrefs(idk, objx);
                 }
             },
-            tested: function () {
-                return this.getPrefs().join("|");
+            tested: function (idk) {
+                return this.getPrefs(idk).join("|");
             },
             ls: function () {
-                var lsf = (window.localStorage.getItem("open-in-browser-firstStart")) ? false : true;
-                var lst = (window.localStorage.getItem("open-in-browser-tooltip")) ? false : true;
+                var lsf = (window.localStorage.getItem("open-in-browser-firstStart6")) ? false : true;
+                var lst = (window.localStorage.getItem("open-in-browser-tooltip2")) ? false : true;
                 return {
                     lsf: lsf,
                     lst: lst
@@ -93,8 +124,8 @@ define(function (require, exports, module) {
             },
             firstStart: function () {
                 if (this.ls().lsf) {
-                    Dialogs.showModalDialog("open.in.browser-OIBB", "Open in Browser.", "<b>features</b><p>adds a button in toolbar for open file in browser</p><b>preferences</b><p>open File : menu > debug > open preferences file.<br>edit item : <i>\"open.in.browser.extensionFile\"</i> > only array.</p>");
-                    window.localStorage.setItem("open-in-browser-firstStart", false);
+                    Dialogs.showModalDialog("open.in.browser-OIBB", "Open in Browser.", '<b>new</b> <p>fixed bug : blank browser tab<p/> <b> <span>features</span> <p>add shortcut Alt-Shift+O (all platforms) </p> </b> <p>add preferences > open whit chrome</p> <p>adds a button in toolbar for open file in browser</p> <b> <span>preferences</span> </b> <p> <span>open File : menu > debug > open preferences file.</span> <br> <span>edit item :</span> <i>\"open.in.browser.extensionFileDefault\"</i> <span> > only array.</span> <br> <i>\"open.in.browser.extensionFileChrome\"</i> <span> > only array.</span> </p>');
+                    window.localStorage.setItem("open-in-browser-firstStart6", false);
                 }
             },
             after: function () {
@@ -105,21 +136,40 @@ define(function (require, exports, module) {
                     }).html("<span>×</span>Open in Browser").click(function () {
                         $(".openInBrowser_tooltip").remove();
                     }).insertAfter($("#main-toolbar"));
-                    window.localStorage.setItem("open-in-browser-tooltip", false);
+                    window.localStorage.setItem("open-in-browser-tooltip2", false);
                 }
+            },
+            getKey: function (kbm, cid) {
+                kbm.getKeyBindings(cid);
+            },
+            removeKey: function (kbm, key, platform) {
+                kbm.removeBinding(key, (platform || "all"));
+            },
+            addKey: function (kbm, cid, shortcut, platform) {
+                kbm.addBinding(cid, shortcut, platform);
+            },
+            addSC: function (str, call) {
+                CommandManager.register(str, keyid, call);
+                KeyBindingManager.addBinding(keyid, short, "all");
             }
         };
     ExtensionUtils.loadStyleSheet(module, "simple.css");
     MainViewManager.on("currentFileChange", function () {
-        o.savePrefs();
+        o.savePrefs(objectK, extensions);
+        o.savePrefs(objectCHR, chrome);
         var path = MainViewManager.getCurrentlyViewedPath(MainViewManager.ACTIVE_PANE);
         if (typeof path === "string") {
             var name = path.substring(path.lastIndexOf("/") + 1),
-                regexp = new RegExp("\\.(" + o.tested() + ")$", "i"),
-                isFile = (regexp.test(name)) ? true : false;
+                regexp = new RegExp("\\.(" + (o.tested(objectK) + "|" + o.tested(objectCHR)) + ")$", "i"),
+                isFile = (regexp.test(name)) ? true : false,
+                thisFile = name.substring(name.lastIndexOf(".") + 1);
             o.removeButton("#openFileBrackets_OIB");
             if (path && isFile) {
-                o.button(path, o.language(getLocale).titleRegister);
+                if (o.hasDATA(o.getPrefs(objectCHR), thisFile)) {
+                    o.button(path, o.language(getLocale), true);
+                } else {
+                    o.button(path, o.language(getLocale), false);
+                }
                 o.after();
             } else {
                 o.removeButton("#openFileBrackets_OIB");
@@ -127,6 +177,28 @@ define(function (require, exports, module) {
         } else {
             o.removeButton("#openFileBrackets_OIB");
         }
+    });
+
+    function handler() {
+        try {
+            var path = MainViewManager.getCurrentlyViewedPath(MainViewManager.ACTIVE_PANE);
+            if (typeof path === "string") {
+                var name = path.substring(path.lastIndexOf("/") + 1),
+                    regexp = new RegExp("\\.(" + (o.tested(objectK) + "|" + o.tested(objectCHR)) + ")$", "i"),
+                    isFile = (regexp.test(name)) ? true : false,
+                    thisFile = name.substring(name.lastIndexOf(".") + 1);
+                if (isFile) {
+                    if (o.hasDATA(o.getPrefs(objectCHR), thisFile)) {
+                        o.open(path, true);
+                    } else {
+                        o.open(path, false);
+                    }
+                }
+            }
+        } catch (err) {}
+    }
+    AppInit.htmlReady(function () {
+        o.addSC(o.language(getLocale), handler);
     });
     o.firstStart();
 });
