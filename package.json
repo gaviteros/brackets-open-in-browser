@@ -3,7 +3,7 @@
     "title": "Open In Browser",
     "description": "Open the contents of your current view/tab in a web browser.",
     "homepage": "https://github.com/DH3ALEJANDRO/brackets-open-in-browser",
-    "version": "4.0.1",
+    "version": "4.0.5",
     "author": "Avril Alejandro",
     "license": "MIT",
     "engines": {
