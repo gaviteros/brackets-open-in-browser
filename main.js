@@ -26,17 +26,17 @@ define(function (require, exports, module) {
         extensions = ["jpg", "jpeg", "gif", "png", "ico"],
         chrome = ["html", "htm"],
         shortIn = [{
-            "key": "Ctrl-Shift-O",
+            "key": "Alt-Shift-O",
             "platform": "win",
             "platform-exception": "mac"
         }, {
-            "key": "Ctrl-Shift-O",
+            "key": "Alt-Shift-O",
             "platform": "mac"
         }, {
-            "key": "Ctrl-Shift-O",
+            "key": "Alt-Shift-O",
             "platform": "linux"
         }],
-        short = "Ctrl-Shift-O",
+        short = "Alt-Shift-O",
         o = {
             language: function (l) {
                 var titleRegister;
@@ -51,7 +51,7 @@ define(function (require, exports, module) {
                 } else if (/hr/gi.test(l)) {
                     titleRegister = "Otvori u web pregledniku";
                 } else {
-                    titleRegister = "Open in Browser (Ctrl-Shift-O)";
+                    titleRegister = "Open in Browser";
                 }
                 return titleRegister;
             },
@@ -127,7 +127,7 @@ define(function (require, exports, module) {
                     $('<div/>').attr({
                         'class': "openInBrowser_tooltip",
                         "style": "top:" + ($("#openFileBrackets_OIB").offset().top - 12) + "px;"
-                    }).html("<span>×</span>Open in Browser (Ctrl-Shift-O)").click(function () {
+                    }).html("<span>×</span>Open in Browser").click(function () {
                         $(".openInBrowser_tooltip").remove();
                     }).insertAfter($("#main-toolbar"));
                     window.localStorage.setItem("open-in-browser-tooltip2", false);
